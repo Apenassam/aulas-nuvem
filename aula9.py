@@ -1,32 +1,22 @@
-def calculadora():
-    while True:
-        try:
-       
-            num1 = float(input("Digite o primeiro número: "))
-            num2 = float(input("Digite o segundo número: "))
-            
-            operacao = input("Digite a operação (+, -, *, /): ")
+notas = []
 
-            if operacao == "+":
-                resultado = num1 + num2
-            elif operacao == "-":
-                resultado = num1 - num2
-            elif operacao == "*":
-                resultado = num1 * num2
-            elif operacao == "/":
-                if num2 == 0:
-                    print("Erro: Divisão por zero não é permitida.")
-                    continue  
-                resultado = num1 / num2
-            else:
-                print("Erro: Operação inválida. Tente novamente.")
-                continue 
+while True:
+    entrada = input("Digite a nota (0 a 10) ou 'fim' para encerrar: ")
 
-            print(f"O resultado de {num1} {operacao} {num2} é: {resultado}")
-            break
+    if entrada.lower() == 'fim':
+        break
 
-        except ValueError:
-            print("Erro: Entrada inválida. Por favor, insira números válidos.")
-            continue  
+    try:
+        nota = float(entrada)
+        if 0 <= nota <= 10:
+            notas.append(nota)
+        else:
+            print("Nota inválida! Digite uma nota entre 0 e 10.")
+    except ValueError:
+        print("Entrada inválida! Por favor, digite um número válido.")
 
-calculadora()
+if notas:
+    media = sum(notas) / len(notas)
+    print(f"A média da turma é: {media:.2f}")
+else:
+    print("Nenhuma nota foi registrada.")
